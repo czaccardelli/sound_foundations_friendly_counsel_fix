@@ -1,0 +1,38 @@
+﻿friendly_counsel_skill_gain_effect = {
+    if = {
+        limit = {
+            has_perk = friendly_counsel_perk
+            any_relation = {
+                type = friend
+                count <= friendly_counsel_max
+            }
+        }
+        random_list = {
+            1 = {
+                add_character_modifier = {
+                    modifier = friendly_counsel_martial_gain
+                }
+            }
+            1 = {
+                add_character_modifier = {
+                    modifier = friendly_counsel_diplomacy_gain
+                }
+            }
+            1 = {
+                add_character_modifier = {
+                    modifier = friendly_counsel_intrigue_gain
+                }
+            }
+            1 = {
+                add_character_modifier = {
+                    modifier = friendly_counsel_stewardship_gain
+                }
+            }
+            1 = {
+                add_character_modifier = {
+                    modifier = friendly_counsel_learning_gain
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,66 @@
+﻿sound_foundations_perk = {
+	lifestyle = diplomacy_lifestyle
+	tree = family
+	position = { 1 4 }
+	icon = node_diplomacy
+	
+	parent = friendly_counsel_perk
+	
+	effect = {
+		custom_description_no_bullet = {
+			text = sound_foundations_perk_effect
+		}
+		hidden_effect = {
+            # first clean up any existing effects in case perks were reset...
+            every_child = {
+                root = { sound_foundations_random_removal_effect = yes }
+            }
+            # ...then see if we have fewer children than the max...
+            if = {
+                limit = {
+                    any_child = {
+                        count <= sound_foundations_max
+                    }
+                }
+                every_child = {
+				    root = { sound_foundations_skill_gain_effect = yes }
+			    }
+            }
+            # ...otherwise, apply the max bonus
+            else = {
+                ordered_child = {
+                    max = sound_foundations_max
+                    root = {
+                        random_list = {
+                            1 = {
+                                add_character_modifier = {
+                                    modifier = sound_foundations_martial_gain
+                                }
+                            }
+                            1 = {
+                                add_character_modifier = {
+                                    modifier = sound_foundations_diplomacy_gain
+                                }
+                            }
+                            1 = {
+                                add_character_modifier = {
+                                    modifier = sound_foundations_intrigue_gain
+                                }
+                            }
+                            1 = {
+                                add_character_modifier = {
+                                    modifier = sound_foundations_stewardship_gain
+                                }
+                            }
+                            1 = {
+                                add_character_modifier = {
+                                    modifier = sound_foundations_learning_gain
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+		}
+	}
+}

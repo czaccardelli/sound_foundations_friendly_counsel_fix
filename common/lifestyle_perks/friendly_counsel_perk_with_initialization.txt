@@ -1,0 +1,71 @@
+﻿friendly_counsel_perk = {
+	lifestyle = diplomacy_lifestyle
+	tree = family
+	position = { 1 3 }
+	icon = node_diplomacy
+	
+	parent = flatterer_perk
+	parent = thicker_than_water_perk
+	
+	effect = {
+		custom_description_no_bullet = {
+			text = friendly_counsel_perk_effect
+		}
+        hidden_effect = {
+            # first clean up any existing effects in case perks were reset...
+            every_relation = {
+                type = friend
+                root = { friendly_counsel_random_removal_effect = yes }
+            }
+            if = {
+                limit = {
+                    any_relation = {
+                        type = friend
+                        count <= friendly_counsel_max
+                    }
+                }
+                # ...then initialize the friendly counsel bonuses for existing friends if we have fewer or equal than the max...
+                every_relation = {
+                    type = friend
+                    root = { friendly_counsel_skill_gain_effect = yes }
+                }                
+            }
+            else = {
+            # ...or else in case we have friendly_counsel_max > # of friends already, add modifiers equal to friendly_counsel_max
+                ordered_relation = {
+                    type = friend
+                    max = friendly_counsel_max
+                    root = {
+                        random_list = {
+                            1 = {
+                                add_character_modifier = {
+                                    modifier = friendly_counsel_martial_gain
+                                }
+                            }
+                            1 = {
+                                add_character_modifier = {
+                                    modifier = friendly_counsel_diplomacy_gain
+                                }
+                            }
+                            1 = {
+                                add_character_modifier = {
+                                    modifier = friendly_counsel_intrigue_gain
+                                }
+                            }
+                            1 = {
+                                add_character_modifier = {
+                                    modifier = friendly_counsel_stewardship_gain
+                                }
+                            }
+                            1 = {
+                                add_character_modifier = {
+                                    modifier = friendly_counsel_learning_gain
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+	}
+}

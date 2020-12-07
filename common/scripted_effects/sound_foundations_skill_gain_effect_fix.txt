@@ -1,0 +1,38 @@
+﻿sound_foundations_skill_gain_effect = {
+	if = { 
+		limit = {
+            # has_perk isn't really needed since it should be checked on calls to this effect, but just in case...
+            has_perk = sound_foundations_perk
+			any_child = {
+                count <= sound_foundations_max
+            }
+		}
+		random_list = {
+			1 = {
+				add_character_modifier = {
+					modifier = sound_foundations_martial_gain
+				}
+			}
+			1 = {
+				add_character_modifier = {
+					modifier = sound_foundations_diplomacy_gain
+				}
+			}
+			1 = {
+				add_character_modifier = {
+					modifier = sound_foundations_intrigue_gain
+				}
+			}
+			1 = {
+				add_character_modifier = {
+					modifier = sound_foundations_stewardship_gain
+				}
+			}
+			1 = {
+				add_character_modifier = {
+					modifier = sound_foundations_learning_gain
+				}
+			}
+		}
+	}
+}
